@@ -161,8 +161,8 @@
     <string name="text_not_member">Create Account</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="text_already_member">Already a member? Login</string>
-    <string name="error_email_exists">Email Already Exists</string>
-    <string name="error_email_not_exists">Username Not Exists</string>
+    <string name="error_email_exists">UserId Already Exists</string>
+    <string name="error_email_not_exists">User Not Exists</string>
     <string name="error_password_not_exists">Wrong password entered.Please try again.</string>
     <string name="error_contactno_not_exists">Wrong Mobile Number entered.Please try again.</string>
     <string name="error_password_match">Password Does Not Matches</string>

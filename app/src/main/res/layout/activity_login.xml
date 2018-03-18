@@ -18,10 +18,10 @@
 
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/gsmart" />
+            android:layout_marginTop="10dp"
+            android:src="@drawable/supermarket" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutEmail"

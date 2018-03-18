@@ -10,23 +10,36 @@ import com.j256.ormlite.field.DatabaseField;
  */
 
 public class Customer implements Parcelable {
-    @DatabaseField(canBeNull = true,generatedId = true)
-    private int id;
+    @DatabaseField(canBeNull = true,id = true)
+    private String id;
     @DatabaseField(canBeNull = true)
     private String name;
-    @DatabaseField(canBeNull = true,unique = true)
+    @DatabaseField(canBeNull = true)
     private String contactNo;
     @DatabaseField(canBeNull = true)
     private String password;
+    @DatabaseField(foreign=true, foreignAutoRefresh=true, canBeNull=true,
+            maxForeignAutoRefreshLevel=3)
 
+    private Gender gender;
     @DatabaseField(canBeNull = true)
     private String address;
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public String getName() {
@@ -69,11 +82,12 @@ public class Customer implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        dest.writeString(id);
         dest.writeString(name);
         dest.writeString(contactNo);
         dest.writeString(password);
         dest.writeString(address);
+        dest.writeValue(gender);
 
     }
 
@@ -93,7 +107,8 @@ public class Customer implements Parcelable {
         contactNo = in.readString();
         password = in.readString();
         address = in.readString();
-        id = in.readInt();
+        id = in.readString();
+        gender = (Gender) in.readValue(Customer.class.getClassLoader());
     }
 
     @Override
@@ -104,6 +119,7 @@ public class Customer implements Parcelable {
                 ", contactNo='" + contactNo + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
+                ", gender='" + gender + '\'' +
                 '}';
     }
 

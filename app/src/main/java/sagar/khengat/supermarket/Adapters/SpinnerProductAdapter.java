@@ -10,8 +10,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import sagar.khengat.gsmart.R;
-import sagar.khengat.gsmart.model.Product;
+import sagar.khengat.supermarket.R;
+import sagar.khengat.supermarket.model.Product;
+
 
 /**
  * Created by Sagar Khengat on 06/03/2018.

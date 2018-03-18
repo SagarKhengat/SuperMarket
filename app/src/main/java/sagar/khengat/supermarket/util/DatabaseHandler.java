@@ -96,7 +96,34 @@ public class DatabaseHandler {
 			for (Customer user:
 					mListAllStores) {
 
-				if (user.getName().equals(email))
+				if (user.getId().equals(email) || user.getName().equals(email))
+				{
+					b = true;
+				}
+				else
+				{
+
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return b;
+	}
+
+	public boolean checkCustomerForRegister(String email) {
+		boolean b = false;
+		List<Customer> mListAllStores = fnGetAllCustomer();
+		try {
+			QueryBuilder < Customer, Integer> qb = customerDao.queryBuilder();
+
+			for (Customer user:
+					mListAllStores) {
+
+				if (user.getId().equals(email))
 				{
 					b = true;
 				}
@@ -162,6 +189,35 @@ public class DatabaseHandler {
 		return b;
 	}
 
+	public boolean checkGender(Gender username) {
+
+		boolean b = false;
+		List<Gender> mListAllStores = fnGetAllGender();
+		try {
+			QueryBuilder < Gender, Integer> qb = genderDao.queryBuilder();
+
+			for (Gender user:
+					mListAllStores) {
+
+				if (user.getGenderName().equals(username.getGenderName()))
+				{
+					b = true;
+				}
+				else
+				{
+
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return b;
+	}
+
+
 	/**
 	 * This method to check user exist or not
 	 *
@@ -179,7 +235,8 @@ public class DatabaseHandler {
 			for (Customer user:
 					mListAllStores) {
 
-				if (user.getName().equals(email) && user.getPassword().equals(password))
+				if ((user.getName().equals(email) && user.getPassword().equals(password)) ||
+						((user.getId().equals(email) && user.getPassword().equals(password))))
 				{
 					b = true;
 				}
@@ -196,6 +253,35 @@ public class DatabaseHandler {
 		}
 		return b;
 	}
+
+	public boolean checkCustomerForUpdatePassword(String email, String password) {
+
+		boolean b = false;
+		List<Customer> mListAllStores = fnGetAllCustomer();
+		try {
+			QueryBuilder < Customer, Integer> qb = customerDao.queryBuilder();
+
+			for (Customer user:
+					mListAllStores) {
+
+				if (user.getName().equals(email) && user.getContactNo().equals(password))
+				{
+					b = true;
+				}
+				else
+				{
+
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return b;
+	}
+
 
 
 	public void addCustomer(Customer user) {
@@ -220,7 +306,6 @@ public class DatabaseHandler {
 		try
 		{
 			genderDao.create( user );
-			Toast.makeText(context, context.getString(R.string.success_message), Toast.LENGTH_LONG).show();
 			b = true;
 
 		} catch(OutOfMemoryError e) {

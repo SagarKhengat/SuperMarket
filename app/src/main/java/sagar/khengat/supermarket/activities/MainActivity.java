@@ -342,12 +342,12 @@ public class MainActivity extends AppCompatActivity {
                 totalOffAmount.setText(stringPriceoff);
                 cart.setProductCartId(product1.getProductId());
                 cart.setProductSize(product1.getProductSize());
-                cart.setStore(product1.getStore());
+
                 cart.setProductUnit(product1.getProductUnit());
-                cart.setProductCategory(product1.getProductCategory());
-                cart.setProductSubCategory(product1.getProductSubCategory());
+
+
                 cart.setProductName(product1.getProductName());
-                cart.setProductArea(product1.getProductArea());
+
                 cart.setProductOriginalPrice(product1.getProductOriginalPrice());
                 cart.setProductGstPrice(product1.getProductGstPrice());
                 cart.setProductQuantity(product1.getProductQuantity());

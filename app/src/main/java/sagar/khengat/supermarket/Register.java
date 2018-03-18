@@ -53,6 +53,7 @@ public class Register extends AppCompatActivity implements Spinner.OnItemSelecte
     Customer customer;
     private Spinner spinnerArea;
     private Gender gender;
+    String genderString = " ";
 
 
 
@@ -92,18 +93,7 @@ public class Register extends AppCompatActivity implements Spinner.OnItemSelecte
 
         appCompatTextViewLoginLink = (AppCompatTextView) findViewById(R.id.appCompatTextViewLoginLink);
         spinnerArea = (Spinner) findViewById(R.id.spinnerArea );
-        spinnerArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Gender area1 = areaAdapter.getItem(position);
-                gender=area1;
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     /**
@@ -122,8 +112,42 @@ public class Register extends AppCompatActivity implements Spinner.OnItemSelecte
         inputValidation = new InputValidation(activity);
         databaseHelper = new DatabaseHandler(activity);
         customer = new Customer();
+        Gender category1 = new Gender();
+
+        category1.setGenderName("Male");
+        if(!databaseHelper.checkGender(category1)) {
+            databaseHelper.addGender(category1);
+        }
+
+        Gender category2 = new Gender();
+        category2.setGenderName("Female");
+        if(!databaseHelper.checkGender(category2)) {
+            databaseHelper.addGender(category2);
+        }
+
+        loadSpinnerGender();
 
 
+        spinnerArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Gender area1 = areaAdapter.getItem(position);
+                if(!area1.getGenderName().equals("Select Gender")) {
+                    gender=area1;
+                    genderString = area1.getGenderName();
+                }else
+                {
+
+                    genderString = "Select Gender";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
@@ -155,10 +179,13 @@ public class Register extends AppCompatActivity implements Spinner.OnItemSelecte
         if (!inputValidation.isInputEditTextFilled(textInputEditTextName, textInputLayoutName, getString(R.string.error_message_name))) {
             return;
         }
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextUserId, textInputLayoutUserId, "Enter User Id")) {
+            return;
+        }
         if (!inputValidation.isInputEditTextFilled(textInputEditTextContactNo, textInputLayoutContactNo, getString(R.string.error_message_email))) {
             return;
         }
-        if (!inputValidation.isInputEditTextEmail(textInputEditTextContactNo, textInputLayoutContactNo, getString(R.string.error_message_email))) {
+        if (!inputValidation.isInputEditTextEmail(textInputEditTextContactNo, textInputLayoutContactNo, "Enter valid mobile Number")) {
             return;
         }
         if (!inputValidation.isInputEditTextFilled(textInputEditTextPassword, textInputLayoutPassword, getString(R.string.error_message_password))) {
@@ -169,21 +196,31 @@ public class Register extends AppCompatActivity implements Spinner.OnItemSelecte
             return;
         }
 
-        if (!databaseHelper.checkCustomer(textInputEditTextName.getText().toString().trim())) {
-
+        if (!inputValidation.isInputEditTextMatches(textInputEditTextPassword, textInputEditTextConfirmPassword,
+                textInputLayoutConfirmPassword, getString(R.string.error_password_match))) {
+            return;
+        }
+        if (!databaseHelper.checkCustomerForRegister(textInputEditTextUserId.getText().toString().trim())) {
+        if(!genderString.equals("Select Gender")) {
             customer.setName(textInputEditTextName.getText().toString().trim());
+            customer.setId(textInputEditTextUserId.getText().toString().trim());
             customer.setContactNo(textInputEditTextContactNo.getText().toString().trim());
             customer.setPassword(textInputEditTextPassword.getText().toString().trim());
             customer.setAddress(textInputEditTextAddress.getText().toString().trim());
-
+            customer.setGender(gender);
             databaseHelper.addCustomer(customer);
 
             // Snack Bar to show success message that record saved successfully
             emptyInputEditText();
-            startActivity(new Intent(Register.this,LoginActivity.class));
+            startActivity(new Intent(Register.this, LoginActivity.class));
             finish();
 
+        }
+        else
+        {
+            Toast.makeText(activity, "Please Select Gender first..", Toast.LENGTH_LONG).show();
 
+        }
         } else {
             // Snack Bar to show error message that record already exists
             Toast.makeText(activity, getString(R.string.error_email_exists), Toast.LENGTH_LONG).show();
@@ -219,7 +256,7 @@ public class Register extends AppCompatActivity implements Spinner.OnItemSelecte
 
     }
 
-    private void loadSpinnerArea() {
+    private void loadSpinnerGender() {
         // database handler
 
 

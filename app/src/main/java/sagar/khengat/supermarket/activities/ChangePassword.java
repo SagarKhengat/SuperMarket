@@ -109,7 +109,7 @@ public class ChangePassword extends AppCompatActivity {
 
     private void fnSubmit() {
             if (databaseHelper.checkCustomer(etxCurrentEmail.getText().toString().trim())) {
-                if (databaseHelper.checkCustomer(etxCurrentEmail.getText().toString().trim(), etxCurrentPassword.getText().toString().trim())) {
+                if (databaseHelper.checkCustomerForUpdatePassword(etxCurrentEmail.getText().toString().trim(), etxCurrentPassword.getText().toString().trim())) {
                     databaseHelper.updateCustomerPassword(etxCurrentEmail.getText().toString(), password);
 
 

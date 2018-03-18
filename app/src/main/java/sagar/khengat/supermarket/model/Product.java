@@ -10,23 +10,9 @@ public class Product implements Parcelable {
     @DatabaseField(canBeNull = true)
 
     private String productName;
-    @DatabaseField(foreign=true, foreignAutoRefresh=true, canBeNull=true,
-            maxForeignAutoRefreshLevel=3)
 
-    private Category productCategory;
-    @DatabaseField(foreign=true, foreignAutoRefresh=true, canBeNull=true,
-            maxForeignAutoRefreshLevel=3)
-    private Store store;
 
-    @DatabaseField(foreign=true, foreignAutoRefresh=true, canBeNull=true,
-            maxForeignAutoRefreshLevel=3)
 
-    private SubCategory productSubCategory;
-
-    @DatabaseField(foreign=true, foreignAutoRefresh=true, canBeNull=true,
-            maxForeignAutoRefreshLevel=3)
-
-    private Area productArea;
 
     @DatabaseField(canBeNull = true)
 
@@ -62,13 +48,7 @@ public class Product implements Parcelable {
     private double productTotalPrice;
 
 
-    public Area getProductArea() {
-        return productArea;
-    }
 
-    public void setProductArea(Area productArea) {
-        this.productArea = productArea;
-    }
 
     public double getProductTotalPrice() {
         return productTotalPrice;
@@ -116,21 +96,7 @@ public class Product implements Parcelable {
     }
 
 
-    public Category getProductCategory() {
-        return productCategory;
-    }
 
-    public void setProductCategory(Category productCategory) {
-        this.productCategory = productCategory;
-    }
-
-    public SubCategory getProductSubCategory() {
-        return productSubCategory;
-    }
-
-    public void setProductSubCategory(SubCategory productSubCategory) {
-        this.productSubCategory = productSubCategory;
-    }
 
     public String getProductName() {
         return productName;
@@ -141,13 +107,7 @@ public class Product implements Parcelable {
     }
 
 
-    public Store getStore() {
-        return store;
-    }
 
-    public void setStore(Store store) {
-        this.store = store;
-    }
 
     public String getProductId() {
         return productId;
@@ -181,11 +141,9 @@ public class Product implements Parcelable {
         dest.writeDouble(productTotalPrice);
         dest.writeString(productName);
 
-        dest.writeValue(productCategory);
-        dest.writeValue(productArea);
+
         dest.writeString(productUnit);
-        dest.writeValue(productSubCategory);
-        dest.writeValue(store);
+
     }
     public static final Creator<Product> CREATOR = new Creator<Product>() {
         @Override
@@ -201,11 +159,7 @@ public class Product implements Parcelable {
     public Product(Parcel in) {
         productId = in.readString();
         productName = in.readString();
-        store = (Store) in.readValue(Product.class.getClassLoader());
 
-        productCategory = (Category) in.readValue(Product.class.getClassLoader());
-        productSubCategory = (SubCategory) in.readValue(Product.class.getClassLoader());
-        productArea = (Area) in.readValue(Product.class.getClassLoader());
         productQuantity = in.readInt();
         productSize = in.readString();
         productUnit = in.readString();
@@ -221,12 +175,8 @@ public class Product implements Parcelable {
     public String toString() {
         return "Product{" +
                 "productName='" + productName + '\'' +
-                ", productSubCategory='" + productSubCategory + '\'' +
-                ", store=" + store +
-                ", productCategory='" + productCategory + '\'' +
                 ", productUnit='" + productUnit + '\'' +
                 ", productId=" + productId +
-                ", productArea=" + productArea +
                 ", productSize='" + productSize + '\'' +
                 ", productOriginalPrice=" + productOriginalPrice +
                 ", productGstPrice=" + productGstPrice +

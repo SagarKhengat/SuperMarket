@@ -19,6 +19,7 @@ import sagar.khengat.supermarket.Constants.Config;
 import sagar.khengat.supermarket.activities.ChangePassword;
 import sagar.khengat.supermarket.activities.MainActivity;
 import sagar.khengat.supermarket.model.Customer;
+import sagar.khengat.supermarket.model.Gender;
 import sagar.khengat.supermarket.util.DatabaseHandler;
 import sagar.khengat.supermarket.util.InputValidation;
 
@@ -92,6 +93,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         databaseHelper = new DatabaseHandler(activity);
         inputValidation = new InputValidation(activity);
 
+
+        Gender category3 = new Gender();
+        category3.setGenderName("Select Gender");
+        if(!databaseHelper.checkGender(category3)) {
+            databaseHelper.addGender(category3);
+        }
     }
 
     /**
@@ -103,16 +110,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.appCompatButtonLogin:
-
+                verifyFromSQLiteCustomer();
 
                 break;
             case R.id.textViewLinkRegister:
                 // Navigate to RegisterActivity
-
+                Intent intentRegister = new Intent(activity, Register.class);
+                startActivity(intentRegister);
+                finish();
                 break;
             case R.id.textViewLinkForgotPassword:
-                Intent intentRegister = new Intent(activity, ChangePassword.class);
-                startActivity(intentRegister);
+                Intent intentpass = new Intent(activity, ChangePassword.class);
+                startActivity(intentpass);
                 finish();
         }
     }
@@ -161,7 +170,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(activity, "wrong password..please try again..", Toast.LENGTH_SHORT).show();
             }
             else {
-                Toast.makeText(activity, "No username found, please create account", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "No username or UserId found, please create account", Toast.LENGTH_SHORT).show();
             }
         }
     }

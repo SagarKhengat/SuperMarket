@@ -15,40 +15,11 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name" />
-        <activity
-            android:name=".activities.generator.GenerateActivity"
-            android:label="@string/activity_generate"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".activities.HistoryActivity"
             android:label="@string/activity_history" />
-        <activity
-            android:name=".activities.generator.GeoGeneratorActivity"
-            android:label="@string/title_activity_geo_generator"
-            android:parentActivityName=".activities.generator.GenerateActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="sagar.khengat.gsmart.activities.generator.GenerateActivity" />
-        </activity>
-        <activity
-            android:name=".activities.generator.BarcodeGenerateActivity"
-            android:label="@string/activity_barcode_generator"
-            android:parentActivityName=".activities.generator.GenerateActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="sagar.khengat.gsmart.activities.generator.GenerateActivity" />
-        </activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,15 +32,15 @@
         <activity android:name=".activities.CartActivity" />
         <activity android:name=".activities.ChangePassword" />
 
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
+        <!--<provider-->
+            <!--android:name="android.support.v4.content.FileProvider"-->
+            <!--android:authorities="com.example.android.fileprovider"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/file_paths" />-->
+        <!--</provider>-->
 
         <activity android:name=".activities.ProductDescription"></activity>
     </application>

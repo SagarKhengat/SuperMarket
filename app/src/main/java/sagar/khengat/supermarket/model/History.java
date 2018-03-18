@@ -13,8 +13,7 @@ public class History implements Parcelable {
     @DatabaseField(canBeNull = true)
 
     private String productDescription;
-    @DatabaseField(foreign = true)
-    private Store store;
+
 
     @DatabaseField(canBeNull = true)
 
@@ -98,13 +97,7 @@ public class History implements Parcelable {
     }
 
 
-    public Store getStore() {
-        return store;
-    }
 
-    public void setStore(Store store) {
-        this.store = store;
-    }
 
     public int getProductId() {
         return productId;
@@ -146,7 +139,7 @@ public class History implements Parcelable {
         dest.writeString(productDescription);
         dest.writeString(productUnit);
         dest.writeInt(productCartId);
-        dest.writeValue(store);
+
     }
     public static final Creator<History> CREATOR = new Creator<History>() {
         @Override
@@ -162,7 +155,7 @@ public class History implements Parcelable {
     public History(Parcel in) {
         productId = in.readInt();
         productName = in.readString();
-        store = (Store) in.readValue(Product.class.getClassLoader());
+
         productBrand =in.readString();
         productCartId = in.readInt();
         productDescription = in.readString();
@@ -180,7 +173,6 @@ public class History implements Parcelable {
         return "History{" +
                 "productName='" + productName + '\'' +
                 ", productDescription='" + productDescription + '\'' +
-                ", store=" + store +
                 ", productCartId='" + productCartId + '\'' +
                 ", productUnit='" + productUnit + '\'' +
                 ", productId=" + productId +

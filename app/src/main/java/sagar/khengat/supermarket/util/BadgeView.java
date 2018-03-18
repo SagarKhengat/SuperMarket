@@ -11,7 +11,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 
-import sagar.khengat.gsmart.R;
+import sagar.khengat.supermarket.R;
 
 
 public class BadgeView extends Drawable {
