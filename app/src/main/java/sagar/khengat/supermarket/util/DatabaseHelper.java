@@ -17,7 +17,6 @@ import sagar.khengat.supermarket.R;
 import sagar.khengat.supermarket.model.Cart;
 import sagar.khengat.supermarket.model.Customer;
 import sagar.khengat.supermarket.model.Gender;
-import sagar.khengat.supermarket.model.History;
 import sagar.khengat.supermarket.model.Product;
 
 
@@ -45,7 +44,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private RuntimeExceptionDao<Customer, Integer> customerDao= null;
 	private RuntimeExceptionDao<Product, Integer> productDao= null;
 	private RuntimeExceptionDao<Cart, Integer> cartDao= null;
-	private RuntimeExceptionDao<History, Integer> historyDao= null;
+
 
 
 
@@ -106,7 +105,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, Customer.class);
 			TableUtils.createTable(connectionSource, Product.class);
 			TableUtils.createTable(connectionSource, Cart.class);
-			TableUtils.createTable(connectionSource, History.class);
+
 
 
 			db.execSQL(CREATE_SCANNED_TABLE);
@@ -138,7 +137,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 			TableUtils.dropTable(connectionSource, Product.class, true);
 			TableUtils.dropTable(connectionSource, Cart.class, true);
-			TableUtils.dropTable(connectionSource, History.class, true);
+
 
 
 			db.execSQL(DROP_SCANNED_TABLE);
@@ -191,12 +190,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		return customerDao;
 	}
 
-	public RuntimeExceptionDao<History, Integer> getHistoryDao() {
-		if (historyDao == null) {
-			historyDao = getRuntimeExceptionDao(History.class);
-		}
-		return historyDao;
-	}
 
 	/**
 	 * Close the database connections and clear any cached DAOs.
@@ -208,7 +201,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		customerDao = null;
 		productDao = null;
 		cartDao = null;
-		historyDao = null;
+
 
 	}
 

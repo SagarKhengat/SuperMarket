@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import sagar.khengat.supermarket.model.Cart;
 import sagar.khengat.supermarket.model.Customer;
 import sagar.khengat.supermarket.model.Gender;
-import sagar.khengat.supermarket.model.History;
 import sagar.khengat.supermarket.model.Product;
 
 
@@ -21,7 +20,7 @@ public class DatabaseConfigUtil extends OrmLiteConfigUtil
 	
 	
 	@SuppressWarnings("rawtypes")
-	static Class[] classes = new Class[]{Customer.class,Product.class, Cart.class, History.class,Gender.class};
+	static Class[] classes = new Class[]{Customer.class,Product.class, Cart.class, Gender.class};
 	
 	public static void main(String[] args) throws SQLException, IOException {
 		writeConfigFile("ormlite_config.txt",classes);

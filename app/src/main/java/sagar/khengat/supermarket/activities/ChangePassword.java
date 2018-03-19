@@ -1,27 +1,62 @@
 package sagar.khengat.supermarket.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import sagar.khengat.supermarket.Adapters.SpinnerAreaAdapter;
 import sagar.khengat.supermarket.Constants.Config;
+import sagar.khengat.supermarket.LoginActivity;
 import sagar.khengat.supermarket.R;
+import sagar.khengat.supermarket.Register;
+import sagar.khengat.supermarket.model.Customer;
+import sagar.khengat.supermarket.model.Gender;
 import sagar.khengat.supermarket.util.DatabaseHandler;
+import sagar.khengat.supermarket.util.InputValidation;
 
 
-public class ChangePassword extends AppCompatActivity {
-    private EditText etxPassword;
-    private EditText etxConfirmPassword;
-    private EditText etxCurrentPassword;
-    private EditText etxCurrentEmail;
-    private Button btnSubmit;
+public class ChangePassword extends AppCompatActivity implements View.OnClickListener {
+    private NestedScrollView nestedScrollView;
+
+    private TextInputLayout textInputLayoutName;
+    private TextInputLayout textInputLayoutContactNo;
+
+    private TextInputLayout textInputLayoutAddress;
+
+
+    private TextInputEditText textInputEditTextName;
+    private TextInputEditText textInputEditTextContactNo;
+
+    private TextInputEditText textInputEditTextAddress;
+
+
+    private AppCompatButton appCompatButtonRegister;
+
+
+    private InputValidation inputValidation;
+
+
+    Customer customer;
+    Gson gson;
+
+    String genderString = " ";
     private final AppCompatActivity activity = ChangePassword.this;
     private DatabaseHandler databaseHelper;
     String password;
@@ -30,68 +65,25 @@ public class ChangePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
-        etxPassword =(EditText)findViewById(R.id.password);
-        etxConfirmPassword = (EditText) findViewById(R.id.confirmpassword);
-        etxCurrentPassword = (EditText) findViewById(R.id.mobile);
-        etxCurrentEmail = (EditText) findViewById(R.id.current_email);
-        btnSubmit = (Button) findViewById(R.id.submit);
-        databaseHelper = new DatabaseHandler(activity);
+
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        setTitle("Change Password");
+        setTitle("Change Profile");
+
+        initViews();
+        initListeners();
+        initObjects();
+
+        gson = new Gson();
 
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String json = sharedPreferences.getString(Config.USER, "");
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(etxCurrentEmail.getText().toString().trim().length()==0)
-                {
-                    etxCurrentEmail.setError("UserName field can not be blank");
-                    etxCurrentEmail.requestFocus();
-                    return;
-                }
-
-                if(etxCurrentPassword.getText().toString().trim().length()==0)
-                {
-                    etxCurrentPassword.setError("Mobile Number field can not be blank");
-                    etxCurrentPassword.requestFocus();
-                    return;
-                }
-                if(etxCurrentPassword.getText().toString().trim().length()!=10)
-                {
-                    etxCurrentPassword.setError("Invalid Mobile Number.");
-                    etxCurrentPassword.requestFocus();
-                    return;
-                }
-
-                if(etxPassword.getText().toString().trim().length()==0)
-                {
-                    etxPassword.setError("Password field can not be blank");
-                    etxPassword.requestFocus();
-                    return;
-                }
-                if(etxConfirmPassword.getText().toString().trim().length()==0)
-                {
-                    etxConfirmPassword.setError("Please Confirm your Password");
-                    etxConfirmPassword.requestFocus();
-                    return;
-
-                }
-
-                if (!(etxPassword.getText().toString().trim().equals(etxConfirmPassword.getText().toString().trim())))
-                {
-                    etxPassword.setError("Password does not Match please enter again");
-                    etxPassword.requestFocus();
-                    return;
-                }
-                else
-                {
-                    password = etxPassword.getText().toString();
-                }
-                fnSubmit();
-            }
-        });
+        customer = gson.fromJson(json,Customer.class);
+        textInputEditTextAddress.setText(customer.getAddress());
+        textInputEditTextName.setText(customer.getContactNo());
+        textInputEditTextContactNo.setText(customer.getName());
     }
 
     @Override
@@ -105,25 +97,96 @@ public class ChangePassword extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void initViews() {
+        nestedScrollView = (NestedScrollView) findViewById(R.id.nestedScrollView);
+
+        textInputLayoutName = (TextInputLayout) findViewById(R.id.textInputLayoutName);
+        textInputLayoutContactNo = (TextInputLayout) findViewById(R.id.textInputLayoutContact);
+
+        textInputLayoutAddress= (TextInputLayout) findViewById(R.id.textInputLayoutCustomerAddress);
 
 
-    private void fnSubmit() {
-            if (databaseHelper.checkCustomer(etxCurrentEmail.getText().toString().trim())) {
-                if (databaseHelper.checkCustomerForUpdatePassword(etxCurrentEmail.getText().toString().trim(), etxCurrentPassword.getText().toString().trim())) {
-                    databaseHelper.updateCustomerPassword(etxCurrentEmail.getText().toString(), password);
+        textInputEditTextName = (TextInputEditText) findViewById(R.id.textInputEditTextName);
+        textInputEditTextContactNo = (TextInputEditText) findViewById(R.id.textInputEditTextContact);
+
+        textInputEditTextAddress= (TextInputEditText) findViewById(R.id.textInputEditTextCustomerAddress);
 
 
-                } else {
-                    // Snack Bar to show error message that record already exists
-                    Toast.makeText(activity, getString(R.string.error_contactno_not_exists), Toast.LENGTH_LONG).show();
-                }
-
-            } else {
-                // Snack Bar to show error message that record already exists
-                Toast.makeText(activity, getString(R.string.error_email_not_exists), Toast.LENGTH_LONG).show();
-            }
+        appCompatButtonRegister = (AppCompatButton) findViewById(R.id.appCompatButtonRegister);
 
 
 
     }
+
+    /**
+     * This method is to initialize listeners
+     */
+    private void initListeners() {
+        appCompatButtonRegister.setOnClickListener(ChangePassword.this);
+
+    }
+
+    /**
+     * This method is to initialize objects to be used
+     */
+    private void initObjects() {
+        inputValidation = new InputValidation(activity);
+        databaseHelper = new DatabaseHandler(activity);
+        customer = new Customer();
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.appCompatButtonRegister:
+
+                postDataToSQLiteCustomer();
+                break;
+
+            case R.id.appCompatTextViewLoginLink:
+                startActivity(new Intent(ChangePassword.this,LoginActivity.class));
+                finish();
+                break;
+        }
+    }
+
+    private void postDataToSQLiteCustomer() {
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextName, textInputLayoutName, getString(R.string.error_message_name))) {
+            return;
+        }
+
+        if (!inputValidation.isInputEditTextFilled(textInputEditTextContactNo, textInputLayoutContactNo, getString(R.string.error_message_email))) {
+            return;
+        }
+        if (!inputValidation.isInputEditTextEmail(textInputEditTextContactNo, textInputLayoutContactNo, "Enter valid mobile Number")) {
+            return;
+        }
+
+
+                customer.setName(textInputEditTextName.getText().toString().trim());
+
+                customer.setContactNo(textInputEditTextContactNo.getText().toString().trim());
+
+                customer.setAddress(textInputEditTextAddress.getText().toString().trim());
+
+                databaseHelper.updateCustomer(customer);
+
+                // Snack Bar to show success message that record saved successfully
+                emptyInputEditText();
+//                startActivity(new Intent(ChangePassword.this, LoginActivity.class));
+                finish();
+
+
+
+
+    }
+
+    private void emptyInputEditText() {
+        textInputEditTextName.setText(null);
+        textInputEditTextContactNo.setText(null);
+        textInputEditTextAddress.setText(null);
+    }
+
 }

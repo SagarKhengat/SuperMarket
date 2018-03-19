@@ -19,7 +19,6 @@ import sagar.khengat.supermarket.R;
 import sagar.khengat.supermarket.model.Cart;
 import sagar.khengat.supermarket.model.Customer;
 import sagar.khengat.supermarket.model.Gender;
-import sagar.khengat.supermarket.model.History;
 import sagar.khengat.supermarket.model.Product;
 
 
@@ -32,7 +31,7 @@ public class DatabaseHandler {
 	private RuntimeExceptionDao<Customer, Integer> customerDao;
 	private RuntimeExceptionDao<Product, Integer> productDao;
 	private RuntimeExceptionDao<Cart, Integer> cartDao;
-	private RuntimeExceptionDao<History, Integer> historyDao;
+
 
 
 
@@ -60,7 +59,7 @@ public class DatabaseHandler {
 
 		productDao = getHelper().getProductDao();
 		cartDao = getHelper().getCartDao();
-		historyDao = getHelper().getHistoryDao();
+
 
 
 
@@ -346,24 +345,6 @@ public class DatabaseHandler {
 
 
 
-	public List<History> fnGetAllHistory() {
-		List< History > mListIndustry = new ArrayList<>();
-
-		try {
-			QueryBuilder< History, Integer> queryBuilder = historyDao.queryBuilder();
-			PreparedQuery< History > preparedQuery = null;
-			preparedQuery = queryBuilder.prepare();
-			mListIndustry = historyDao.query( preparedQuery );
-		} catch ( SQLException e ) {
-			e.printStackTrace();
-		} catch(OutOfMemoryError e) {
-			e.printStackTrace();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-
-		return mListIndustry;
-	}
 
 	public List<Product> fnGetAllProduct() {
 		List< Product > mListIndustry = new ArrayList<>();
@@ -596,75 +577,7 @@ public class DatabaseHandler {
 
 
 
-	public List<History> fnGetAllHistory(Customer store)
-	{
 
-		List<History> mListStores = new ArrayList<>();
-		List<History> mListAllStores = fnGetAllHistory();
-
-		try {
-//			QueryBuilder < Store, Integer > qb = storeDao.queryBuilder();
-//			Where<Store, Integer> where = qb.where();
-//
-//			where.like( "areaId", area.getAreaId() );//.or().like("customerPrintAs", "%"+nameToSearch+"%");
-//
-//
-//
-//			// It filters only data present in DB fetched at the time of sync.
-//			PreparedQuery < Store> pq = where.prepare();
-//			mListStores = storeDao.query( pq );
-
-
-			for (History event : mListAllStores) {
-				boolean isFound = false;
-				// check if the event name exists in noRepeat
-				for (History e : mListStores) {
-					if (e.getProductName().equals(event.getProductName()) && e.getProductBrand().equals(event.getProductBrand()))
-					isFound = true;
-					break;
-				}
-				if (!isFound) mListStores.add(event);
-			}
-
-
-//			for (History cart : mListAllStores)
-//			{
-//
-//				mListStores.add(cart);
-//
-//				for(History carta : mListStores)
-//				{
-//
-//					if (  cart.getProductName().equals(carta.getProductName()) && cart.getProductBrand().equals(carta.getProductBrand()))
-//					{
-//						mListAllStores.remove(carta);
-//					}
-//				}
-//			}
-
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-
-		return mListStores;
-	}
-
-
-
-	public void addProductHistory(History product) {
-		try
-		{
-			historyDao.createIfNotExists( product );
-		} catch(OutOfMemoryError e) {
-			e.printStackTrace();
-			Toast.makeText( context, "Problem in memory allocation. Please free some memory space and try again.", Toast.LENGTH_LONG ).show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	public Product fnGetProductFromCart(Cart cart)
 	{
@@ -744,25 +657,27 @@ public class DatabaseHandler {
 //	}
 
 
-	public void updateCustomerPassword(String Email, String Password)
+	public void updateCustomer(Customer customer)
 	{
 		try
 		{
 			UpdateBuilder<Customer, Integer> updateBuilder = customerDao.updateBuilder();
-			updateBuilder.where().eq("name",Email);
-			updateBuilder.updateColumnValue("password",Password);
+			updateBuilder.where().eq("id",customer.getId());
+			updateBuilder.updateColumnValue("name",customer.getName());
+			updateBuilder.updateColumnValue("contactNo",customer.getContactNo());
+			updateBuilder.updateColumnValue("address",customer.getAddress());
 			updateBuilder.update();
-			Toast.makeText( context, "Password changed Successfully...", Toast.LENGTH_LONG ).show();
+			Toast.makeText( context, "Profile changed Successfully...", Toast.LENGTH_LONG ).show();
 		} catch(OutOfMemoryError e)
 		{
 			e.printStackTrace();
-			Toast.makeText( context, "Problem in updating password try again.", Toast.LENGTH_LONG ).show();
+			Toast.makeText( context, "Problem in updating Profile try again.", Toast.LENGTH_LONG ).show();
 
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			Toast.makeText( context, "Problem in updating password try again.", Toast.LENGTH_LONG ).show();
+			Toast.makeText( context, "Problem in updating profile try again.", Toast.LENGTH_LONG ).show();
 
 		}
 	}
