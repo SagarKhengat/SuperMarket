@@ -7,6 +7,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 import sagar.khengat.supermarket.Constants.Config;
 import sagar.khengat.supermarket.activities.MainActivity;
@@ -23,8 +27,12 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-
-
+        Animation animation = AnimationUtils.loadAnimation(SplashScreen.this, R.anim.blink);
+        animation.setInterpolator(new LinearInterpolator());
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.setDuration(2000);
+        final ImageView splash = (ImageView) findViewById(R.id.image);
+        splash.startAnimation(animation);
 
         new Handler().postDelayed(new Runnable() {
 
