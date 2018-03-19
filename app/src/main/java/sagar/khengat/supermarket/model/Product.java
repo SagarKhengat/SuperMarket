@@ -19,24 +19,22 @@ public class Product implements Parcelable {
     private String productUnit;
 
 
-    @DatabaseField(canBeNull = true,id = true)
+    @DatabaseField(canBeNull = true,generatedId = true)
 
-    private String productId;
+    private Integer productId;
 
 
     @DatabaseField(canBeNull = true)
 
     private String productSize;
 
+    @DatabaseField(canBeNull = true)
 
+    private String productBrand;
     @DatabaseField(canBeNull = true)
 
 
-    private double productOriginalPrice;
-    @DatabaseField(canBeNull = true)
-
-
-    private double productGstPrice;
+    private double productPrice;
     @DatabaseField(canBeNull = true)
 
     private int productQuantity;
@@ -48,7 +46,13 @@ public class Product implements Parcelable {
     private double productTotalPrice;
 
 
+    public String getProductBrand() {
+        return productBrand;
+    }
 
+    public void setProductBrand(String productBrand) {
+        this.productBrand = productBrand;
+    }
 
     public double getProductTotalPrice() {
         return productTotalPrice;
@@ -61,21 +65,14 @@ public class Product implements Parcelable {
 
 
 
-    public double getProductGstPrice() {
-        return productGstPrice;
+    public double getProductPrice() {
+        return productPrice;
     }
 
-    public void setProductGstPrice(double productGstPrice) {
-        this.productGstPrice = productGstPrice;
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public double getProductOriginalPrice() {
-        return productOriginalPrice;
-    }
-
-    public void setProductOriginalPrice(double productOriginalPrice) {
-        this.productOriginalPrice = productOriginalPrice;
-    }
 
 
     public String getProductUnit() {
@@ -109,11 +106,11 @@ public class Product implements Parcelable {
 
 
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
@@ -133,11 +130,12 @@ public class Product implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(productId);
+        dest.writeInt(productId);
+        dest.writeString(productBrand);
         dest.writeInt(productQuantity);
         dest.writeString(productSize);
-        dest.writeDouble(productOriginalPrice);
-        dest.writeDouble(productGstPrice);
+
+        dest.writeDouble(productPrice);
         dest.writeDouble(productTotalPrice);
         dest.writeString(productName);
 
@@ -157,15 +155,16 @@ public class Product implements Parcelable {
         }
     };
     public Product(Parcel in) {
-        productId = in.readString();
+        productId = in.readInt();
+        productBrand = in.readString();
         productName = in.readString();
 
         productQuantity = in.readInt();
         productSize = in.readString();
         productUnit = in.readString();
-        productOriginalPrice = in.readDouble();
+
         productTotalPrice = in.readDouble();
-        productGstPrice = in.readDouble();
+        productPrice = in.readDouble();
     }
 
     public Product() {
@@ -177,9 +176,9 @@ public class Product implements Parcelable {
                 "productName='" + productName + '\'' +
                 ", productUnit='" + productUnit + '\'' +
                 ", productId=" + productId +
+                ", productBrand=" + productBrand +
                 ", productSize='" + productSize + '\'' +
-                ", productOriginalPrice=" + productOriginalPrice +
-                ", productGstPrice=" + productGstPrice +
+                ", productPrice=" + productPrice +
                 ", productQuantity=" + productQuantity +
                 ", productTotalPrice=" + productTotalPrice +
                 '}';

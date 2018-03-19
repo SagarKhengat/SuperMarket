@@ -160,33 +160,33 @@ public class DatabaseHandler {
 	 *
 	 */
 
-	public boolean checkProduct(String username) {
-
-		boolean b = false;
-		List<Product> mListAllStores = fnGetAllProduct();
-		try {
-			QueryBuilder < Product, Integer> qb = productDao.queryBuilder();
-
-			for (Product user:
-					mListAllStores) {
-
-				if (user.getProductId().equals(username))
-				{
-					b = true;
-				}
-				else
-				{
-
-				}
-
-			}
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-		return b;
-	}
+//	public boolean checkProduct(String username) {
+//
+//		boolean b = false;
+//		List<Product> mListAllStores = fnGetAllProduct();
+//		try {
+//			QueryBuilder < Product, Integer> qb = productDao.queryBuilder();
+//
+//			for (Product user:
+//					mListAllStores) {
+//
+//				if (user.getProductId().equals(username))
+//				{
+//					b = true;
+//				}
+//				else
+//				{
+//
+//				}
+//
+//			}
+//
+//		} catch (Exception e) {
+//
+//			e.printStackTrace();
+//		}
+//		return b;
+//	}
 
 	public boolean checkGender(Gender username) {
 
@@ -696,7 +696,8 @@ public class DatabaseHandler {
 			for (Customer user:
 					mListAllStores) {
 
-				if (user.getName().equals(retailerName) && user.getPassword().equals(password))
+				if ((user.getName().equals(retailerName) && user.getPassword().equals(password)) ||
+						((user.getId().equals(retailerName) && user.getPassword().equals(password))))
 				{
 					b = user;
 				}
@@ -718,32 +719,32 @@ public class DatabaseHandler {
 
 
 
-	public void updateProduct(Product product)
-	{
-
-		try
-		{
-			UpdateBuilder<Product, Integer> deleteBuilder = productDao.updateBuilder();
-			deleteBuilder.updateColumnValue("productName", product.getProductName());
-			deleteBuilder.updateColumnValue("productSize", product.getProductSize());
-			deleteBuilder.updateColumnValue("productOriginalPrice", product.getProductOriginalPrice());
-			deleteBuilder.updateColumnValue("productGstPrice", product.getProductGstPrice());
-			deleteBuilder.updateColumnValue("productUnit", product.getProductUnit());
-
-			deleteBuilder.where().eq("productId", product.getProductId());
-			deleteBuilder.update();
-
-
-		}
-		catch(OutOfMemoryError e)
-		{
-			e.printStackTrace();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+//	public void updateProduct(Product product)
+//	{
+//
+//		try
+//		{
+//			UpdateBuilder<Product, Integer> deleteBuilder = productDao.updateBuilder();
+//			deleteBuilder.updateColumnValue("productName", product.getProductName());
+//			deleteBuilder.updateColumnValue("productSize", product.getProductSize());
+//			deleteBuilder.updateColumnValue("productOriginalPrice", product.getProductOriginalPrice());
+//			deleteBuilder.updateColumnValue("productGstPrice", product.getProductGstPrice());
+//			deleteBuilder.updateColumnValue("productUnit", product.getProductUnit());
+//
+//			deleteBuilder.where().eq("productId", product.getProductId());
+//			deleteBuilder.update();
+//
+//
+//		}
+//		catch(OutOfMemoryError e)
+//		{
+//			e.printStackTrace();
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//	}
 
 	public void deleteProduct(Product product)
 	{

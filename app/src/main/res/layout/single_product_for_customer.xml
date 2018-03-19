@@ -10,43 +10,30 @@
         android:id="@+id/main"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="120dp"
         android:weightSum="1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_weight="0.7"
-            >
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/off"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textColor="#FE2020"
-                    android:maxLines="1"
-                    android:text="offer"
-                    android:textSize="12sp" />
-            </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="95dp"
-                android:paddingTop="2dp"
-                >
+                android:paddingTop="2dp">
+
                 <ImageView
                     android:id="@+id/product_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
                     android:background="@android:color/white"
-                    />
+                    android:scaleType="fitXY" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -86,7 +73,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/product_category"
+                android:id="@+id/product_brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -98,71 +85,8 @@
                 android:textSize="12sp"
 
                 />
-            <TextView
-                android:id="@+id/product_subcategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:fontFamily="sans-serif-light"
-                android:maxLines="2"
-                android:textStyle="bold"
-                android:paddingTop="8dp"
-                android:text="product_name"
-                android:textSize="12sp"
 
-                />
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/rs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:fontFamily="sans-serif-light"
-
-                    android:maxLines="1"
-                    android:paddingTop="8dp"
-                    android:text="MRP: "
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/actual_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:layout_toRightOf="@id/rs"
-                    android:fontFamily="sans-serif-light"
-                    android:maxLines="1"
-                    android:paddingTop="8dp"
-                    android:text="actual_price"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/dash"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:layout_toRightOf="@id/rs"
-                    android:background="@drawable/line"
-                    android:fontFamily="sans-serif-light"
-                    android:maxLines="1"
-                    android:layout_marginTop="9dp"
-                    />
-                <TextView
-                    android:id="@+id/unitact"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:layout_toRightOf="@id/actual_price"
-                    android:maxLines="1"
-                    android:paddingTop="8dp"
-                    android:text="kg"
-                    android:textSize="12sp"
-                    />
-            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -210,7 +134,8 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
                 <!--<TextView-->
                     <!--android:id="@+id/rstotal"-->
                     <!--android:layout_width="wrap_content"-->

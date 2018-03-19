@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         String json = sharedPreferences.getString(Config.USER, "");
 
         customer = gson.fromJson(json,Customer.class);
-//        productList = mDatabaseHandler.fnGetAllProductForCustomer(store,area,category,subCategory);
+        productList = mDatabaseHandler.fnGetAllProduct();
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -321,13 +321,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                double multiQ = value * product1.getProductGstPrice();
-                double off = (product1.getProductOriginalPrice()-product1.getProductGstPrice())*value;
+//                double multiQ = value * product1.getProductGstPrice();
+//                double off = (product1.getProductOriginalPrice()-product1.getProductGstPrice())*value;
                 product1.setProductQuantity(value);
-                product1.setProductTotalPrice(multiQ);
-
-                alTotalAmount.add(multiQ);
-                alTotalOffAmount.add(off);
+//                product1.setProductTotalPrice(multiQ);
+//
+//                alTotalAmount.add(multiQ);
+//                alTotalOffAmount.add(off);
                 double sum = 0;
                 for (int i = 0; i < alTotalAmount.size(); i++) {
                     sum = sum + alTotalAmount.get(i);
@@ -348,8 +348,8 @@ public class MainActivity extends AppCompatActivity {
 
                 cart.setProductName(product1.getProductName());
 
-                cart.setProductOriginalPrice(product1.getProductOriginalPrice());
-                cart.setProductGstPrice(product1.getProductGstPrice());
+//                cart.setProductOriginalPrice(product1.getProductOriginalPrice());
+//                cart.setProductGstPrice(product1.getProductGstPrice());
                 cart.setProductQuantity(product1.getProductQuantity());
                 cart.setProductTotalPrice(product1.getProductTotalPrice());
                 cart.setCustomer(customer);

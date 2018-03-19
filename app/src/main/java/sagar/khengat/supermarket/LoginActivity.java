@@ -20,6 +20,7 @@ import sagar.khengat.supermarket.activities.ChangePassword;
 import sagar.khengat.supermarket.activities.MainActivity;
 import sagar.khengat.supermarket.model.Customer;
 import sagar.khengat.supermarket.model.Gender;
+import sagar.khengat.supermarket.model.Product;
 import sagar.khengat.supermarket.util.DatabaseHandler;
 import sagar.khengat.supermarket.util.InputValidation;
 
@@ -156,6 +157,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         //Saving values to editor
                         editor.apply();
+
+
+            Product p1 = new Product();
+            p1.setProductName("lux");
+            p1.setProductSize("100");
+            p1.setProductBrand("Dabour");
+            p1.setProductUnit("gm");
+            p1.setProductPrice(12);
+            databaseHelper.addProduct(p1);
+
             Intent accountsIntent = new Intent(activity, MainActivity.class);
             accountsIntent.putExtra("EMAIL", textInputEditTextEmail.getText().toString().trim());
             emptyInputEditText();

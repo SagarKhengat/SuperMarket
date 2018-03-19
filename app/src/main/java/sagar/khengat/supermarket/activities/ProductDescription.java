@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
+
 
 import java.io.File;
 
@@ -62,8 +62,8 @@ public class ProductDescription extends AppCompatActivity {
 
         textViewName.setText(product.getProductName());
 
-        textActualPrice.setText("MRP. "+product.getProductOriginalPrice());
-        textSellingPrice.setText("Rs. "+ Double.toString(product.getProductGstPrice()));
+
+        textSellingPrice.setText("Rs. "+ Double.toString(product.getProductPrice()));
         textViewSize.setText(product.getProductSize());
 
 

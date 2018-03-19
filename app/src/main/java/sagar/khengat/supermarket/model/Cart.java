@@ -46,7 +46,7 @@ public class Cart implements Parcelable {
 
     @DatabaseField(canBeNull = true)
 
-    private String productCartId;
+    private Integer productCartId;
 
 
     @DatabaseField(foreign=true, foreignAutoRefresh=true, canBeNull=true,
@@ -62,11 +62,11 @@ public class Cart implements Parcelable {
         this.customer = customer;
     }
 
-    public String getProductCartId() {
+    public int getProductCartId() {
         return productCartId;
     }
 
-    public void setProductCartId(String productCartId) {
+    public void setProductCartId(int productCartId) {
         this.productCartId = productCartId;
     }
 
@@ -157,7 +157,7 @@ public class Cart implements Parcelable {
         dest.writeInt(productId);
         dest.writeInt(productQuantity);
         dest.writeString(productSize);
-        dest.writeString(productCartId);
+        dest.writeInt(productCartId);
         dest.writeDouble(productOriginalPrice);
         dest.writeDouble(productGstPrice);
         dest.writeDouble(productTotalPrice);
@@ -184,7 +184,7 @@ public class Cart implements Parcelable {
     public Cart(Parcel in) {
         productId = in.readInt();
         productName = in.readString();
-        productCartId = in.readString();
+        productCartId = in.readInt();
 
 
 
