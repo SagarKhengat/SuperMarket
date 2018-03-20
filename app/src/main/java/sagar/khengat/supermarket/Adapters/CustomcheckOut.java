@@ -94,7 +94,7 @@ public class CustomcheckOut extends RecyclerView.Adapter<CustomcheckOut.ViewHold
 
 
 
-        Glide.with(context).load(getImage(product.getProductName())).into(holder.imageView);
+        Glide.with(context).load(getImage(product.getProductBrand())).into(holder.imageView);
 
 
 

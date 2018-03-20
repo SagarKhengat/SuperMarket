@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,7 +141,9 @@ public class CartActivity extends AppCompatActivity {
                 sum = sum + alTotalAmount.get(i);
             }
             String stringPrice = Double.toString(sum);
-            totalAmount.setText(stringPrice);
+            DecimalFormat df = new DecimalFormat("#.##");
+            String off =df.format(sum);
+            totalAmount.setText(off);
 //
 
 
@@ -191,7 +194,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.settings:
+            case R.id.updatepass:
                 startActivity(new Intent(CartActivity.this, ChangePassword.class));
                 return true;
             case R.id.logout:

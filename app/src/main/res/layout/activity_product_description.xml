@@ -75,29 +75,7 @@
 
                 </TableRow>
 
-                <TableRow>
-                    <TextView
-                        android:text="Actual Price:"
-                        android:paddingRight="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="17sp"
-                        android:textColor="#000"
-                        android:fontFamily="sans-serif-light"
-                        android:paddingTop="10dp"
-                        />
 
-                    <TextView
-                        android:id="@+id/tv_actual_price"
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="17sp"
-                        android:textColor="#000"
-                        android:paddingTop="10dp"
-                        />
-
-                </TableRow>
 
                 <TableRow>
                     <TextView
@@ -149,28 +127,7 @@
                         android:paddingTop="10dp"/>
 
                 </TableRow>
-                <TextView
-                    android:text="Product Description:"
-                    android:paddingRight="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:textColor="#000"
-                    android:fontFamily="sans-serif-light"
-                    android:paddingTop="10dp"
 
-                    />
-
-                <TextView
-                    android:id="@+id/tv_product_desc"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:textColor="#000"
-                    android:paddingTop="10dp"
-
-                    />
 
 
 

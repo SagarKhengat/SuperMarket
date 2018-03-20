@@ -68,7 +68,7 @@ public class ProductDescription extends AppCompatActivity {
 
 
 
-        Glide.with(activity).load(getImage(product.getProductName())).into(imageView);
+        Glide.with(activity).load(getImage(product.getProductBrand())).into(imageView);
 
     }
 

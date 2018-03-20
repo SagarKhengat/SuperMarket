@@ -38,17 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="sans-serif-light"
 
-                    android:maxLines="1"
-                    android:paddingTop="5dp"
-                    android:text="Size"
-                    android:textSize="12sp" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -118,11 +108,23 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
                 <TextView
+                    android:id="@+id/size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_toRightOf="@id/selling_price"
+
+                    android:maxLines="1"
+                    android:paddingTop="8dp"
+                    android:text="Size"
+                    android:textSize="12sp" />
+                <TextView
                     android:id="@+id/unitsell"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
-                    android:layout_toRightOf="@id/selling_price"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toRightOf="@id/size"
                     android:maxLines="1"
                     android:paddingTop="8dp"
                     android:textStyle="bold"

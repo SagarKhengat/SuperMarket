@@ -89,7 +89,7 @@ public class CustomProductForCustomerAdapter extends RecyclerView.Adapter<Custom
 
 
 
-        Glide.with(context).load(getImage(product.getProductName())).into(holder.imageView);
+        Glide.with(context).load(getImage(product.getProductBrand())).into(holder.imageView);
 
     }
 

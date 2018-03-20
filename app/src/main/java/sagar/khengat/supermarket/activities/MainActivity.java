@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -333,7 +334,9 @@ public class MainActivity extends AppCompatActivity {
                     sum = sum + alTotalAmount.get(i);
                 }
                 String stringPrice = Double.toString(sum);
-                totalAmount.setText(stringPrice);
+                DecimalFormat df = new DecimalFormat("#.##");
+                String off =df.format(sum);
+                totalAmount.setText(off);
 
                 cart.setProductCartId(product1.getProductId());
                 cart.setProductSize(product1.getProductSize());

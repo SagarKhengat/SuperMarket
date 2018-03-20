@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/supermarket1"
-    android:paddingBottom="20dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="20dp"
+
     tools:context=".LoginActivity">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/products"/>
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp">
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="120dp"
             android:layout_height="70dp"
@@ -64,26 +69,20 @@
             android:text="@string/text_login" />
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/textViewLinkRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="40dp"
             android:gravity="center"
             android:text="@string/text_not_member"
-            android:textSize="16dp" />
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/textViewLinkForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="40dp"
-                android:gravity="center"
-                android:text="@string/forgot_password"
-                android:textSize="16dp" />
+            android:textSize="16dp"
+            android:textColor="@android:color/background_dark" />
+
         </LinearLayout>
 
     </android.support.v7.widget.LinearLayoutCompat>
-</android.support.v4.widget.NestedScrollView>
+</RelativeLayout>
