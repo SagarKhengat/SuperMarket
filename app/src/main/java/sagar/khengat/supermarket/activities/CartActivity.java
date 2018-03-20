@@ -41,11 +41,11 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private Button placeOrder;
     private TextView totalAmount;
-    private TextView totalOffAmount;
+
 
     private List<Cart> productList;
     private ArrayList<Double> alTotalAmount;
-    private ArrayList<Double> alTotalOffAmount;
+
     private DatabaseHandler mDatabaeHelper;
     final Activity activity = this;
     Gson gson;
@@ -56,13 +56,13 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         totalAmount = (TextView) findViewById(R.id.tv_total_amount);
-        totalOffAmount = (TextView) findViewById(R.id.tv_off_amount);
+
         mDatabaeHelper = new DatabaseHandler(this);
 
         productList = new ArrayList<>();
 
         alTotalAmount = new ArrayList<>();
-        alTotalOffAmount = new ArrayList<>();
+
         gson = new Gson();
         //Fetching the boolean value form sharedpreferences
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -131,13 +131,8 @@ public class CartActivity extends AppCompatActivity {
 
         } else {
             for (Cart cart : productList) {
-                double d = cart.getProductTotalPrice();
-                quantity = cart.getProductQuantity();
-
-                double off = (cart.getProductOriginalPrice()-cart.getProductGstPrice())*quantity;
-
                 alTotalAmount.add(cart.getProductTotalPrice());
-                alTotalOffAmount.add(off);
+
             }
 
             double sum = 0;
@@ -148,12 +143,7 @@ public class CartActivity extends AppCompatActivity {
             totalAmount.setText(stringPrice);
 //
 
-            double sumoff = 0;
-            for (int i = 0; i < alTotalOffAmount.size(); i++) {
-                sumoff = sumoff + alTotalOffAmount.get(i);
-            }
-            String stringPriceoff = Double.toString(sumoff);
-            totalOffAmount.setText(stringPriceoff);
+
 
             adapter = new CustomcheckOut(productList, CartActivity.this, new MyAdapterListener() {
                 @Override

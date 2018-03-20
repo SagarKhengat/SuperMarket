@@ -160,33 +160,33 @@ public class DatabaseHandler {
 	 *
 	 */
 
-//	public boolean checkProduct(String username) {
-//
-//		boolean b = false;
-//		List<Product> mListAllStores = fnGetAllProduct();
-//		try {
-//			QueryBuilder < Product, Integer> qb = productDao.queryBuilder();
-//
-//			for (Product user:
-//					mListAllStores) {
-//
-//				if (user.getProductId().equals(username))
-//				{
-//					b = true;
-//				}
-//				else
-//				{
-//
-//				}
-//
-//			}
-//
-//		} catch (Exception e) {
-//
-//			e.printStackTrace();
-//		}
-//		return b;
-//	}
+	public boolean checkProduct(String username) {
+
+		boolean b = false;
+		List<Product> mListAllStores = fnGetAllProduct();
+		try {
+			QueryBuilder < Product, Integer> qb = productDao.queryBuilder();
+
+			for (Product user:
+					mListAllStores) {
+
+				if (user.getProductName().equals(username))
+				{
+					b = true;
+				}
+				else
+				{
+
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		return b;
+	}
 
 	public boolean checkGender(Gender username) {
 
@@ -461,7 +461,7 @@ public class DatabaseHandler {
 
 			for (Cart cart : mListAllStores)
 			{
-				if(cart.getCustomer().getId()==store.getId())
+				if(cart.getCustomer().getId().equals(store.getId()))
 				{
 					mListStores.add(cart);
 				}
@@ -501,7 +501,7 @@ public class DatabaseHandler {
 
 			for (Cart cart : mListAllStores)
 			{
-				if(cart.getCustomer().getId()==store.getId())
+				if(cart.getCustomer().getId().equals(store.getId()))
 				{
 					mListStores.add(cart);
 				}
@@ -559,7 +559,7 @@ public class DatabaseHandler {
 
 			for (Cart cart : mListAllStores)
 			{
-				if(cart.getCustomer().getId()==store.getId())
+				if(cart.getCustomer().getId().equals(store.getId()))
 				{
 					cartDao.delete(cart);
 				}

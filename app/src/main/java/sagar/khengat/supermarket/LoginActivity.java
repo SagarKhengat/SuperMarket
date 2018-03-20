@@ -165,7 +165,138 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             p1.setProductBrand("Dabour");
             p1.setProductUnit("gm");
             p1.setProductPrice(12);
-            databaseHelper.addProduct(p1);
+            if(!databaseHelper.checkProduct(p1.getProductName())) {
+                databaseHelper.addProduct(p1);
+            }
+
+            Product p2 = new Product();
+            p2.setProductName("asd");
+            p2.setProductSize("100");
+            p2.setProductBrand("Dabour");
+            p2.setProductUnit("gm");
+            p2.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p2.getProductName())) {
+                databaseHelper.addProduct(p2);
+            }
+
+            Product p3 = new Product();
+            p3.setProductName("dd");
+            p3.setProductSize("100");
+            p3.setProductBrand("Dabour");
+            p3.setProductUnit("gm");
+            p3.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p3.getProductName())) {
+                databaseHelper.addProduct(p3);
+            }
+            Product p4 = new Product();
+            p4.setProductName("gg");
+            p4.setProductSize("100");
+            p4.setProductBrand("Dabour");
+            p4.setProductUnit("gm");
+            p4.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p4.getProductName())) {
+                databaseHelper.addProduct(p4);
+            }
+            Product p5 = new Product();
+            p5.setProductName("lutrx");
+            p5.setProductSize("100");
+            p5.setProductBrand("Dabour");
+            p5.setProductUnit("gm");
+            p5.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p5.getProductName())) {
+                databaseHelper.addProduct(p5);
+            }
+            Product p6 = new Product();
+            p6.setProductName("ghgh");
+            p6.setProductSize("100");
+            p6.setProductBrand("Dabour");
+            p6.setProductUnit("gm");
+            p6.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p6.getProductName())) {
+                databaseHelper.addProduct(p6);
+            }
+            Product p7 = new Product();
+            p7.setProductName("jjh");
+            p7.setProductSize("100");
+            p7.setProductBrand("Dabour");
+            p7.setProductUnit("gm");
+            p7.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p7.getProductName())) {
+                databaseHelper.addProduct(p7);
+            }
+            Product p8 = new Product();
+            p8.setProductName("yuyu");
+            p8.setProductSize("100");
+            p8.setProductBrand("Dabour");
+            p8.setProductUnit("gm");
+            p8.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p8.getProductName())) {
+                databaseHelper.addProduct(p8);
+            }
+            Product p9 = new Product();
+            p9.setProductName("yty");
+            p9.setProductSize("100");
+            p9.setProductBrand("Dabour");
+            p9.setProductUnit("gm");
+            p9.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p9.getProductName())) {
+                databaseHelper.addProduct(p9);
+            }
+            Product p11 = new Product();
+            p11.setProductName("tyt");
+            p11.setProductSize("100");
+            p11.setProductBrand("Dabour");
+            p11.setProductUnit("gm");
+            p11.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p11.getProductName())) {
+                databaseHelper.addProduct(p11);
+            }
+            Product p12 = new Product();
+            p12.setProductName("ltytux");
+            p12.setProductSize("100");
+            p12.setProductBrand("Dabour");
+            p12.setProductUnit("gm");
+            p12.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p12.getProductName())) {
+                databaseHelper.addProduct(p12);
+            }
+            Product p13 = new Product();
+            p13.setProductName("lutytyux");
+            p13.setProductSize("100");
+            p13.setProductBrand("Dabour");
+            p13.setProductUnit("gm");
+            p13.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p13.getProductName())) {
+                databaseHelper.addProduct(p13);
+            }
+            Product p14 = new Product();
+            p14.setProductName("kjk");
+            p14.setProductSize("100");
+            p14.setProductBrand("Dabour");
+            p14.setProductUnit("gm");
+            p14.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p14.getProductName())) {
+                databaseHelper.addProduct(p14);
+            }
+            Product p15 = new Product();
+            p15.setProductName("luxkjkj");
+            p15.setProductSize("100");
+            p15.setProductBrand("Dabour");
+            p15.setProductUnit("gm");
+            p15.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p15.getProductName())) {
+                databaseHelper.addProduct(p15);
+            }
+            Product p16 = new Product();
+            p16.setProductName("lughghtx");
+            p16.setProductSize("100");
+            p16.setProductBrand("Dabour");
+            p16.setProductUnit("gm");
+            p16.setProductPrice(12);
+            if(!databaseHelper.checkProduct(p16.getProductName())) {
+                databaseHelper.addProduct(p16);
+            }
+
 
             Intent accountsIntent = new Intent(activity, MainActivity.class);
             accountsIntent.putExtra("EMAIL", textInputEditTextEmail.getText().toString().trim());

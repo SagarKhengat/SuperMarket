@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#fff"
-    tools:context="khengat.sagar.scanqrc.activities.CartActivity">
+    tools:context="sagar.khengat.supermarket.activities.CartActivity">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/product_recycler"
         android:layout_width="match_parent"
@@ -25,46 +25,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <RelativeLayout
-            android:id="@+id/test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            >
-            <TextView
-                android:id="@+id/ta1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFF"
-                android:textSize="12sp"
-                android:layout_gravity="bottom"
-                android:fontFamily="sans-serif-light"
-                android:text="Total Amount You Save: "
-                android:paddingLeft="05dp"/>
-            <TextView
-                android:id="@+id/rs1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFF"
-                android:textSize="12sp"
-                android:layout_gravity="bottom"
-                android:text="Rs."
-                android:fontFamily="sans-serif-light"
-                android:paddingLeft="1dp"
-                android:layout_toRightOf="@id/ta1"/>
-            <TextView
-                android:id="@+id/tv_off_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFF"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif-light"
-                android:layout_gravity="bottom"
-                android:textStyle="bold"
-                android:text="0"
-                android:paddingLeft="2dp"
-                android:layout_toRightOf="@id/rs1"/>
-        </RelativeLayout>
 
 
 
@@ -73,8 +33,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/test"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             >
             <TextView
                 android:id="@+id/ta"

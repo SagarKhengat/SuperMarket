@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 
@@ -40,8 +41,6 @@ public class ProductDescription extends AppCompatActivity {
         setContentView(R.layout.activity_product_description);
         imageView = (ImageView) findViewById(R.id.product_image);
         textViewName = (TextView) findViewById(R.id.product_name);
-        textViewDescription= (TextView) findViewById(R.id.tv_product_desc);
-        textActualPrice= (TextView) findViewById(R.id.tv_actual_price);
         textSellingPrice= (TextView) findViewById(R.id.tv_selling_price);
         textViewSize = (TextView) findViewById(R.id.tv_product_size);
         textBrand = (TextView) findViewById(R.id.product_brand);
@@ -61,6 +60,7 @@ public class ProductDescription extends AppCompatActivity {
 
 
         textViewName.setText(product.getProductName());
+        textBrand.setText(product.getProductBrand());
 
 
         textSellingPrice.setText("Rs. "+ Double.toString(product.getProductPrice()));
@@ -68,14 +68,7 @@ public class ProductDescription extends AppCompatActivity {
 
 
 
-//        Picasso.with(activity).load(new File(  Environment.getExternalStorageDirectory().getPath()
-//                + File.separator
-//                +"GSmart"+  File.separator
-//                + product.getStore().getStoreName()+ File.separator+product.getProductName()+".jpg"))
-//                .placeholder(R.drawable.product)
-//                .fit()
-//                .into(imageView);
-
+        Glide.with(activity).load(getImage(product.getProductName())).into(imageView);
 
     }
 
@@ -88,5 +81,11 @@ public class ProductDescription extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public int getImage(String imageName) {
+
+        int drawableResourceId = getResources().getIdentifier(imageName, "drawable",getPackageName());
+
+        return drawableResourceId;
     }
 }

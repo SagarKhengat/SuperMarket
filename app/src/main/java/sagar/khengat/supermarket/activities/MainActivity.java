@@ -56,13 +56,13 @@ public class MainActivity extends AppCompatActivity {
     static BadgeView badge;
 
 
-    String who;
+
 
     private Button placeOrder;
     private TextView totalAmount;
-    private TextView totalOffAmount;
+
     private ArrayList<Double> alTotalAmount;
-    private ArrayList<Double> alTotalOffAmount;
+
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<Product> productList;
@@ -106,12 +106,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.product_recycler);
         layoutManager = new LinearLayoutManager(activity);
         totalAmount = (TextView) findViewById(R.id.tv_total_amount);
-        totalOffAmount = (TextView) findViewById(R.id.tv_off_amount);
+
         placeOrder = (Button) findViewById(R.id.btn_place_order);
         recyclerView.setLayoutManager(layoutManager);
         productList = new ArrayList<>();
         alTotalAmount = new ArrayList<>();
-        alTotalOffAmount = new ArrayList<>();
+
        final SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
 
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         //Fetching the boolean value form sharedpreferences
 
         String sharedPreferencesString = sharedPreferences.getString(Config.STORE_SHARED_PREF, "");
-        who = sharedPreferences.getString(Config.WHO, "");
+
 
 
 
@@ -321,12 +321,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//                double multiQ = value * product1.getProductGstPrice();
+                double multiQ = value * product1.getProductPrice();
 //                double off = (product1.getProductOriginalPrice()-product1.getProductGstPrice())*value;
-                product1.setProductQuantity(value);
-//                product1.setProductTotalPrice(multiQ);
+                     product1.setProductQuantity(value);
+                product1.setProductTotalPrice(multiQ);
 //
-//                alTotalAmount.add(multiQ);
+                alTotalAmount.add(multiQ);
 //                alTotalOffAmount.add(off);
                 double sum = 0;
                 for (int i = 0; i < alTotalAmount.size(); i++) {
@@ -334,12 +334,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 String stringPrice = Double.toString(sum);
                 totalAmount.setText(stringPrice);
-                double sumoff = 0;
-                for (int i = 0; i < alTotalOffAmount.size(); i++) {
-                    sumoff = sumoff + alTotalOffAmount.get(i);
-                }
-                String stringPriceoff = Double.toString(sumoff);
-                totalOffAmount.setText(stringPriceoff);
+
                 cart.setProductCartId(product1.getProductId());
                 cart.setProductSize(product1.getProductSize());
 
@@ -347,9 +342,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 cart.setProductName(product1.getProductName());
+                cart.setProductBrand(product1.getProductBrand());
 
-//                cart.setProductOriginalPrice(product1.getProductOriginalPrice());
-//                cart.setProductGstPrice(product1.getProductGstPrice());
+
+                cart.setProductPrice(product1.getProductPrice());
                 cart.setProductQuantity(product1.getProductQuantity());
                 cart.setProductTotalPrice(product1.getProductTotalPrice());
                 cart.setCustomer(customer);

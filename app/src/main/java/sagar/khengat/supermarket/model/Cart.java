@@ -28,12 +28,12 @@ public class Cart implements Parcelable {
 
     @DatabaseField(canBeNull = true)
 
+    private String productBrand;
 
-    private double productOriginalPrice;
     @DatabaseField(canBeNull = true)
 
 
-    private double productGstPrice;
+    private double productPrice;
     @DatabaseField(canBeNull = true)
 
     private int productQuantity;
@@ -80,23 +80,27 @@ public class Cart implements Parcelable {
     }
 
 
-
-
-    public double getProductGstPrice() {
-        return productGstPrice;
+    public String getProductBrand() {
+        return productBrand;
     }
 
-    public void setProductGstPrice(double productGstPrice) {
-        this.productGstPrice = productGstPrice;
+    public void setProductBrand(String productBrand) {
+        this.productBrand = productBrand;
     }
 
-    public double getProductOriginalPrice() {
-        return productOriginalPrice;
+    public void setProductCartId(Integer productCartId) {
+        this.productCartId = productCartId;
     }
 
-    public void setProductOriginalPrice(double productOriginalPrice) {
-        this.productOriginalPrice = productOriginalPrice;
+    public double getProductPrice() {
+        return productPrice;
     }
+
+    public void setProductPrice(double productGstPrice) {
+        this.productPrice = productGstPrice;
+    }
+
+
 
 
     public String getProductUnit() {
@@ -158,8 +162,8 @@ public class Cart implements Parcelable {
         dest.writeInt(productQuantity);
         dest.writeString(productSize);
         dest.writeInt(productCartId);
-        dest.writeDouble(productOriginalPrice);
-        dest.writeDouble(productGstPrice);
+
+        dest.writeDouble(productPrice);
         dest.writeDouble(productTotalPrice);
         dest.writeString(productName);
 
@@ -194,9 +198,9 @@ public class Cart implements Parcelable {
         productQuantity = in.readInt();
         productSize = in.readString();
         productUnit = in.readString();
-        productOriginalPrice = in.readDouble();
+
         productTotalPrice = in.readDouble();
-        productGstPrice = in.readDouble();
+        productPrice = in.readDouble();
     }
 
     public Cart() {
@@ -210,8 +214,7 @@ public class Cart implements Parcelable {
                 ", productCartId='" + productCartId + '\'' +
                 ", productId=" + productId +
                 ", productSize='" + productSize + '\'' +
-                ", productOriginalPrice=" + productOriginalPrice +
-                ", productGstPrice=" + productGstPrice +
+                ", productPrice=" + productPrice +
                 ", productQuantity=" + productQuantity +
                 ", productTotalPrice=" + productTotalPrice +
                 ", customer=" + customer +

@@ -82,8 +82,8 @@ public class ChangePassword extends AppCompatActivity implements View.OnClickLis
 
         customer = gson.fromJson(json,Customer.class);
         textInputEditTextAddress.setText(customer.getAddress());
-        textInputEditTextName.setText(customer.getContactNo());
-        textInputEditTextContactNo.setText(customer.getName());
+        textInputEditTextName.setText(customer.getName());
+        textInputEditTextContactNo.setText(customer.getContactNo());
     }
 
     @Override

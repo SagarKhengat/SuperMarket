@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -73,57 +74,37 @@ public class CustomcheckOut extends RecyclerView.Adapter<CustomcheckOut.ViewHold
 
 
         holder.textViewName.setText(product.getProductName());
+        holder.textViewBrand.setText(product.getProductBrand());
 
         holder.tvSize.setText(product.getProductSize());
         holder.tvUnit.setText(" "+product.getProductUnit());
         holder.tvUnitsell.setText("/ "+product.getProductUnit());
-        holder.tvUnitact.setText("/ "+product.getProductUnit());
 
-        holder.textActualPrice.setText(Double.toString(product.getProductOriginalPrice()));
-        holder.textSellingPrice.setText(Double.toString(product.getProductGstPrice()));
+
+
+        holder.textSellingPrice.setText(Double.toString(product.getProductPrice()));
         String stringdouble= Integer.toString(product.getProductQuantity());
         String stringPrice= Double.toString(product.getProductTotalPrice());
         holder.tvTotalPrice.setText(stringPrice);
         holder.tvQuantity.setText(stringdouble);
 
 
-        double a = new Double(product.getProductOriginalPrice());
-        double b =new Double(product.getProductGstPrice()) ;
-
-
-        double o = (b/a)*100;
-
-        Double dd = new Double(100-o);
-        float offf = dd.floatValue();
-        DecimalFormat df = new DecimalFormat("#.##");
-        String off =df.format(dd);
-
-        holder.tvOff.setText(off+"% Off");
-        if (offf==0)
-        {
-            holder.tvOff.setVisibility(View.INVISIBLE);
-        }
 
 
 
-//        Picasso.with(context).load(new File(  Environment.getExternalStorageDirectory().getPath()
-//                + File.separator
-//                +"GSmart"+  File.separator
-//                + product.getStore().getStoreName()+ File.separator+product.getProductName()+".jpg"))
-//                .placeholder(R.drawable.product)
-//                .fit()
-//                .into(holder.imageView);
 
+
+        Glide.with(context).load(getImage(product.getProductName())).into(holder.imageView);
 
 
 
     }
+    public int getImage(String imageName) {
 
-//    public void showCartDialog()
-//    {
-//
-//
-//    }
+        int drawableResourceId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+
+        return drawableResourceId;
+    }
 
 
 
@@ -140,8 +121,8 @@ public class CustomcheckOut extends RecyclerView.Adapter<CustomcheckOut.ViewHold
         public ImageView delete;
         public TextView textViewName;
         public TextView textViewBrand;
-        public TextView textViewSub;
-        public TextView textActualPrice;
+
+
         public TextView textSellingPrice;
         public TextView tvQuantity;
         public TextView tvUnit;
@@ -158,13 +139,13 @@ public class CustomcheckOut extends RecyclerView.Adapter<CustomcheckOut.ViewHold
             delete = (ImageView) itemView.findViewById(R.id.delete);
             textViewName = (TextView) itemView.findViewById(R.id.product_name);
             textViewBrand= (TextView) itemView.findViewById(R.id.product_category);
-            textViewSub= (TextView) itemView.findViewById(R.id.product_subcategory);
-            textActualPrice= (TextView) itemView.findViewById(R.id.actual_price);
+
+
             textSellingPrice= (TextView) itemView.findViewById(R.id.selling_price);
             tvQuantity = (TextView) itemView.findViewById(R.id.quantity);
             tvUnit = (TextView) itemView.findViewById(R.id.unit);
             tvUnitsell = (TextView) itemView.findViewById(R.id.unitsell);
-            tvUnitact = (TextView) itemView.findViewById(R.id.unitact);
+
             tvTotalPrice = (TextView)itemView.findViewById(R.id.total_price);
             tvOff = (TextView)itemView.findViewById(R.id.off);
             tvSize = (TextView)itemView.findViewById(R.id.size);
