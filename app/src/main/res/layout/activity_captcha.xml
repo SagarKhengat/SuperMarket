@@ -24,7 +24,7 @@
             android:id="@+id/textInputEditTextcaptcha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Captcha"
+            android:hint="Solve Captcha"
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@android:color/background_dark" />

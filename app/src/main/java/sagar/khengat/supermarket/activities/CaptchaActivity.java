@@ -96,7 +96,7 @@ public class CaptchaActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
 
-            case R.id.settings:
+            case R.id.updatepass:
                 startActivity(new Intent(CaptchaActivity.this, ChangePassword.class));
                 return true;
             case R.id.logout:
