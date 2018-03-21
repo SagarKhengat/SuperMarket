@@ -312,9 +312,11 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText edt = (EditText) dialogView.findViewById(R.id.edit1);
         final TextView unit = (TextView) dialogView.findViewById(R.id.unit);
+        final TextView size = (TextView) dialogView.findViewById(R.id.size);
 
         dialogBuilder.setTitle("Add Quantity");
         unit.setText(product1.getProductUnit());
+        size.setText(product1.getProductSize());
         dialogBuilder.setPositiveButton("Add to Cart", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String edtQ =   edt.getText().toString().trim();

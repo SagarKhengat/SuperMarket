@@ -74,7 +74,30 @@
                         />
 
                 </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Product Unit: "
+                        android:paddingRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="#000"
+                        android:fontFamily="sans-serif-light"
+                        android:paddingTop="10dp"
+                        />
 
+                    <TextView
+                        android:id="@+id/tv_product_unit"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="#000"
+                        android:paddingTop="10dp"
+
+                        />
+
+                </TableRow>
 
 
                 <TableRow>

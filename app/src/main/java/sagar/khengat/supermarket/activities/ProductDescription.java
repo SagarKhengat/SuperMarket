@@ -41,6 +41,7 @@ public class ProductDescription extends AppCompatActivity {
         setContentView(R.layout.activity_product_description);
         imageView = (ImageView) findViewById(R.id.product_image);
         textViewName = (TextView) findViewById(R.id.product_name);
+        textActualPrice = (TextView) findViewById(R.id.tv_product_unit);
         textSellingPrice= (TextView) findViewById(R.id.tv_selling_price);
         textViewSize = (TextView) findViewById(R.id.tv_product_size);
         textBrand = (TextView) findViewById(R.id.product_brand);
@@ -61,7 +62,7 @@ public class ProductDescription extends AppCompatActivity {
 
         textViewName.setText(product.getProductName());
         textBrand.setText(product.getProductBrand());
-
+        textActualPrice.setText(product.getProductUnit());
 
         textSellingPrice.setText("Rs. "+ Double.toString(product.getProductPrice()));
         textViewSize.setText(product.getProductSize());

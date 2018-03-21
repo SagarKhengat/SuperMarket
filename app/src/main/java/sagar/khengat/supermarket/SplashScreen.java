@@ -13,6 +13,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import sagar.khengat.supermarket.Constants.Config;
+import sagar.khengat.supermarket.activities.CaptchaActivity;
 import sagar.khengat.supermarket.activities.MainActivity;
 
 
@@ -55,7 +56,7 @@ public class SplashScreen extends Activity {
                 //If we will get true
                 if(loggedIn){
                     //We will start the Profile Activity
-                    Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                    Intent i = new Intent(SplashScreen.this, CaptchaActivity.class);
                     startActivity(i);
 
                     // close this activity

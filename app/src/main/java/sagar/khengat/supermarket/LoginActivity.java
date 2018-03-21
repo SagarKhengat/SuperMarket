@@ -19,6 +19,7 @@ import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.google.gson.Gson;
 
 import sagar.khengat.supermarket.Constants.Config;
+import sagar.khengat.supermarket.activities.CaptchaActivity;
 import sagar.khengat.supermarket.activities.ChangePassword;
 import sagar.khengat.supermarket.activities.MainActivity;
 import sagar.khengat.supermarket.model.Customer;
@@ -305,7 +306,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
 
-            Intent accountsIntent = new Intent(activity, MainActivity.class);
+            Intent accountsIntent = new Intent(activity, CaptchaActivity.class);
             accountsIntent.putExtra("EMAIL", textInputEditTextEmail.getText().toString().trim());
             emptyInputEditText();
             startActivity(accountsIntent);

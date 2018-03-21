@@ -15,7 +15,6 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name" />
-
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,17 +27,18 @@
         <activity android:name=".activities.CartActivity" />
         <activity android:name=".activities.ChangePassword" />
 
-        <!--<provider-->
-            <!--android:name="android.support.v4.content.FileProvider"-->
-            <!--android:authorities="com.example.android.fileprovider"-->
-            <!--android:exported="false"-->
-            <!--android:grantUriPermissions="true">-->
-            <!--<meta-data-->
-                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
-                <!--android:resource="@xml/file_paths" />-->
-        <!--</provider>-->
+        <!-- <provider -->
+        <!-- android:name="android.support.v4.content.FileProvider" -->
+        <!-- android:authorities="com.example.android.fileprovider" -->
+        <!-- android:exported="false" -->
+        <!-- android:grantUriPermissions="true"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.support.FILE_PROVIDER_PATHS" -->
+        <!-- android:resource="@xml/file_paths" /> -->
+        <!-- </provider> -->
 
-        <activity android:name=".activities.ProductDescription"></activity>
+        <activity android:name=".activities.ProductDescription" />
+        <activity android:name=".activities.CaptchaActivity"></activity>
     </application>
 
 </manifest>
